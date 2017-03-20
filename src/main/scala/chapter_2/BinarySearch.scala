@@ -11,40 +11,36 @@ object BinarySearch extends App{
   def search(value:Int, array:Array[Int]) : Option[Int] = {
 
     @tailrec
-    def go(low:Int,high:Int,tmpArray:Array[Int]):Option[Int] = {
-      if (tmpArray.length == 0) {
+    def go(low:Int,high:Int):Option[Int] = {
+      if (low>=high) {
         None
       }else {
         val mid = (low + high) / 2
         if (array(mid) == value) {
           Some(mid)
         } else if (array(mid) > value) {
-          go(low, mid, tmpArray.slice(low, mid))
+          go(low, mid)
         } else {
-          go(mid + 1, high, tmpArray.slice(mid + 1, high))
+          go(mid + 1, high)
 
         }
       }
 
     }
 
-    go(0,array.length,array)
+    go(0,array.length)
   }
 
-  val a = search(2, Array(1, 3, 4, 6, 7, 8))
-  val b = search(4, Array(1, 3, 4, 6, 7, 8))
-  val c = search(2, Array(1,2))
-  val d = search(2, Array(1,2,3))
-  val e = search(2, Array(2))
-  val f = search(2, Array())
+  println(search(2, Array(1, 3, 4, 6, 7, 8)))
+  println(search(4, Array(1, 3, 4, 6, 7, 8)))
+  println(search(2, Array(1, 2)))
+  println(search(2, Array(1)))
+  println(search(2, Array(2)))
+  println(search(2, Array()))
 
 
-  println(a)
-  println(b)
-  println(c)
-  println(d)
-  println(e)
-  println(f)
+
+
 
 
 
